@@ -40,23 +40,24 @@ Get a list of basic options :
 python3 nosqlpot.py -h
 ```
 
-Deploy an nosql engine:
+For Linux systems, screen is recommended since NoPo does not run as a daemon and will terminate if a terminal is lost. To deploy NoPo simply issue the command:
 
 ```bash
-python3 nosqlpot.py -deploy redis
-python3 nosqlpot.py -deplot couch
+screen -d -m -S nopo-redis python3 nosqlpot.py -deploy redis
+screen -d -m -S nopo-couch python3 nosqlpot.py -deploy couch
 ```
 
 Deploy an nosql engine with a configuration file:
 
 ```bash
-python3 nosqlpot.py -deploy redis -config filename
+screen -d -m -S nopo-redis python3 nosqlpot.py -deploy redis -config <filename>
 ```
     
-Log commands,session to file :
+Log commands session to file :
 
 ```bash
-python3 nosqlpot.py -deploy redis -out log.out
+screen -d -m -S nopo-redis python3 nosqlpot.py -deploy redis -out nopo-redis.log
+screen -d -m -S nopo-couch python3 nosqlpot.py -deploy couch -out nopo-couch.log
 ```
 
 If installation succeds the server deployed should look like the one shown below:
