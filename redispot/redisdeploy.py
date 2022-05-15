@@ -28,7 +28,13 @@ class RedisServer(Protocol):
 
     def connectionMade(self):
         self.connectionNb += 1
-        print("New connection: %s from %s"%(format(self.connectionNb),self.transport.getPeer().host))
+        print(f'New connection from {self.transport.getPeer().host}')
+        print(f'Active connections: {self.connectionNb}')
+
+    def connectionLost(self, reason):
+        self.connectionNb -= 1
+        print(f'Connection terminated with {self.transport.getPeer().host}: {reason.getErrorMessage()}')
+        print(f'Active connections: {self.connectionNb}')
 
     #Handling of Client Requests , Data 
     def dataReceived(self, rcvdata):
@@ -75,10 +81,6 @@ class RedisServer(Protocol):
                     self.transport.write("-ERR wrong number of arguments for 'keys' command\r\n")
             else:
                 self.transport.write("-ERR unknown command '%s'\r\n"%(data[0]))
-    def connectionLost(self, reason):
-        self.connectionNb -= 1
-        print("End connection: ", reason.getErrorMessage())
-
 
 class RedisServerFactory(ServerFactory):
 
