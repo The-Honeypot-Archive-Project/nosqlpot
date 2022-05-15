@@ -1,12 +1,12 @@
 import cherrypy
 import uuid
-import httplib, urllib
+import http.client, urllib.request, urllib.parse, urllib.error
 import os.path
-import ConfigParser	
+import configparser	
 
 
 global config
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 config.read("couchpot/couch.conf")
 
 class Couchpot:
