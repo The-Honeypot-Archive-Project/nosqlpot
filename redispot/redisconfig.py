@@ -3,7 +3,7 @@
 import sys
 import itertools
 import fileinput
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 
 DELIMITER = "\r\n"
 
@@ -69,13 +69,13 @@ class rediscommands():
 		input.close()
 		for line in fileinput.FileInput("redispot/config/redis2.conf",inplace=1):
 		    if line.rstrip():
-		        print line
+		        print(line)
 		input=open('redispot/config/redis2.conf','r')
 		data=input.readlines()
 		for i in data:
 			if len(i.strip().split()) > 1:
 				l.append(i.strip().split())
-		print len(l)
+		print(len(l))
 		red_enc_data=rediscommands.encode(l)
 		return red_enc_data
 	@staticmethod
@@ -84,7 +84,7 @@ class rediscommands():
 		#Simulation of INFO command in Redis (enables the user to add options)
 		parser = SafeConfigParser()
 		parser.read('redispot/config/info')
-		print "test"
+		print("test")
 		parser.set('info','uptime_in_seconds',str(time))
 		parser.set('info','total_connections_received',str(connections))
 		parser.set('info','total_commands_processed',str(cmds))
