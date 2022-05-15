@@ -1,4 +1,8 @@
 # NoSQL-Honeypot-Framework (NoPo)
+[![Docker Image CI](https://github.com/verovaleros/honeypot_nosqlpot/actions/workflows/docker-image.yml/badge.svg)](https://github.com/verovaleros/honeypot_nosqlpot/actions/workflows/docker-image.yml)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/verovaleros/honeypot_nosqlpot)
+![GitHub last commit (branch)](https://img.shields.io/badge/python-3.8.10-brightgreen)
+![Docker Pulls](https://img.shields.io/docker/pulls/verovaleros/nosqlpot?color=green)
 
 NoSQL-Honeypot-Framework (NoPo) is an open source honeypot for nosql databases that automates the process of detecting attackers and logging attack incidents. The simulation engines are deployed using the twisted framework. 
 
