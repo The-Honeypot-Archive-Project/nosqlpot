@@ -2,7 +2,7 @@ import cherrypy
 import uuid
 import http.client, urllib.request, urllib.parse, urllib.error
 import os.path
-import configparser     
+import configparser
 
 
 global config
@@ -11,7 +11,6 @@ config.read("couchpot/couch.conf")
 
 class Couchpot:
 
-        
         def index(self):
         # Connection Test 
                 #return '''{"couchdb":"Welcome","uuid":"%s","version":"1.6.1","vendor":{"name":"Ubuntu","version":"14.04"}}\n''' % uuid.uuid1().hex
@@ -49,5 +48,4 @@ def coudeploy():
         cherrypy.config.update({'error_page.404':error_404})
         access_log = cherrypy.log.access_log
         cherrypy.quickstart(Couchpot(), config=serverconf)
-
 
