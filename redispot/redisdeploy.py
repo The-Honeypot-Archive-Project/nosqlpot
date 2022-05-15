@@ -10,9 +10,13 @@ from .redisconfig import rediscommands
 
 ### Protocol Implementation of NoPo-Redis Server
 
-global time_elapse,cmd_count
+# time_elapse: variable used to keep track of elapsed time
+global time_elapse
 time_elapse = time.time()
 
+# cmd_count: variable used to keep track of the number of 
+# commands received
+global cmd_count
 cmd_count = 0
 
 class RedisServer(Protocol):
