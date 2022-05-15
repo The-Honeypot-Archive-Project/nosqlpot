@@ -65,5 +65,16 @@ If installation succeds the server deployed should look like the one shown below
 ![Screenshot](http://i.imgur.com/4cCX3Me.png)
 
 
+### Run NoPo using Docker
 
+Run NoPo using a Docker image from DockerHub in one command. The current setup allows one deployment per container (redis, couch).
 
+Deploy a NoPo Redis DB:
+```bash
+docker container run -d --name nopo-redis -p 6109:6109 verovaleros/nosqlpot:latest python3 nosqlpot.py -deploy redis
+```
+
+Deploy a NoPo Couch DB:
+```bash
+docker container run -d --name nopo-couch -p 8112:8112 verovaleros/nosqlpot:latest python3 nosqlpot.py -deploy couch
+```
