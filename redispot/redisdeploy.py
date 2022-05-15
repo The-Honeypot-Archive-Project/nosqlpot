@@ -19,19 +19,19 @@ time_elapse = time.time()
 cmd_count = 0
 
 class RedisServer(Protocol):
-    
+
     connectionNb = 0
-    
+
     def __init__(self):
         pass
-    
+
     def connectionMade(self):
         self.connectionNb += 1
         print("New connection: %s from %s"%(format(self.connectionNb),self.transport.getPeer().host))
 
     #Handling of Client Requests , Data 
     def dataReceived(self, rcvdata):
-        cmd_count = 0   
+        cmd_count = 0
         r = fakeredis.FakeStrictRedis()
         cmd_count = cmd_count + 1
         print("original data:"+str(rcvdata), end=' ')
@@ -48,10 +48,10 @@ class RedisServer(Protocol):
 
         else:
             if command.lower() == "ping" or rcvdata.find('PING') == 0:
-                snddata = "+PONG\r\n"  
+                snddata = "+PONG\r\n"
                 #redis_protocol.encode("PONG crime")    
                 #print redis_protocol.encode("PONG")
-                self.transport.write(snddata) 
+                self.transport.write(snddata)
             elif command.lower() == "config get *" or rcvdata.find('config')==0:
                 self.transport.write(rediscommands.parse_config())
             elif command.lower().startswith('set') and len(data) == 3:
@@ -80,12 +80,12 @@ class RedisServer(Protocol):
 
 
 class RedisServerFactory(ServerFactory):
-    
+
     protocol = RedisServer
 
 def reddeploy(port=6109,method='stdout'):
     if method != 'stdout':
-	log.startLogging(open('redis.log', 'a'))  
+	log.startLogging(open('redis.log', 'a'))
     else:
 	log.startLogging(sys.stdout)
     reactor.listenTCP(port, RedisServerFactory())
