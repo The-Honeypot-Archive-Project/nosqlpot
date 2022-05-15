@@ -19,7 +19,7 @@ from redispot import redisdeploy
 from couchpot import couchdeploy
 
 def banner():
-	print """
+	print("""
 		 /$$   /$$          /$$$$$$$
 		| $$$ | $$        | $$__  $$
 		| $$$$| $$ /$$$$$$| $$  \ $$/$$$$$$
@@ -32,7 +32,7 @@ def banner():
 
 Usage : nopo.py -deploy redis
 
-"""
+""")
 
 def main():
 	port=0
