@@ -85,8 +85,8 @@ class RedisServerFactory(ServerFactory):
 
 def reddeploy(port=6109,method='stdout'):
     if method != 'stdout':
-	log.startLogging(open('redis.log', 'a'))
+        log.startLogging(open('redis.log', 'a'))
     else:
-	log.startLogging(sys.stdout)
+        log.startLogging(sys.stdout)
     reactor.listenTCP(port, RedisServerFactory())
     reactor.run()
