@@ -10,9 +10,6 @@ from .redisconfig import rediscommands
 
 ### Protocol Implementation of NoPo-Redis Server
 
-global con_count
-con_count = 0
-
 global time_elapse,cmd_count
 time_elapse = time.time()
 
