@@ -1,4 +1,4 @@
-# NoSQL-Honeypot-Framework (NoPo)
+# NoPo: NoSQL Honeypot Framework
 [![Docker Image CI](https://github.com/verovaleros/honeypot_nosqlpot/actions/workflows/docker-image.yml/badge.svg)](https://github.com/verovaleros/honeypot_nosqlpot/actions/workflows/docker-image.yml)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/verovaleros/honeypot_nosqlpot)
 ![GitHub last commit (branch)](https://img.shields.io/badge/python-3.8.10-brightgreen)
