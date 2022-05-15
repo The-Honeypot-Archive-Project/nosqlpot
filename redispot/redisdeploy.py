@@ -21,20 +21,20 @@ cmd_count = 0
 
 class RedisServer(Protocol):
 
-    connectionNb = 0
+    connection_number = 0
 
     def __init__(self):
         pass
 
     def connectionMade(self):
-        self.connectionNb += 1
+        self.connection_number += 1
         print(f'New connection from {self.transport.getPeer().host}')
-        print(f'Active connections: {self.connectionNb}')
+        print(f'Active connections: {self.connection_number}')
 
     def connectionLost(self, reason):
-        self.connectionNb -= 1
+        self.connection_number -= 1
         print(f'Connection terminated with {self.transport.getPeer().host}: {reason.getErrorMessage()}')
-        print(f'Active connections: {self.connectionNb}')
+        print(f'Active connections: {self.connection_number}')
 
     #Handling of Client Requests , Data 
     def dataReceived(self, rcvdata):
@@ -70,7 +70,7 @@ class RedisServer(Protocol):
                     self.transport.write('+"%s"\r\n'%(s))
             elif command.lower().startswith('info'):
                 diff = round(time.time() - time_elapse) % 60
-                self.transport.write(rediscommands.parse_info(diff,self.connectionNb,cmd_count))
+                self.transport.write(rediscommands.parse_info(diff,self.connection_number,cmd_count))
             elif command.lower().startswith('keys') and (len(data) == 2 or len(data) == 1):
                 if list(r.keys()) and (data[1] in list(r.keys()) or data[1] == '*') :
                     keys=list(r.keys())
