@@ -6,7 +6,7 @@ import redis_protocol
 import sys
 import fakeredis
 import time
-from redisconfig import rediscommands
+from .redisconfig import rediscommands
 
 ### Protocol Implementation of NoPo-Redis Server
 
@@ -27,19 +27,19 @@ class RedisServer(Protocol):
     
     def connectionMade(self):
         self.connectionNb += 1
-        print "New connection: %s from %s"%(format(self.connectionNb),self.transport.getPeer().host)
+        print("New connection: %s from %s"%(format(self.connectionNb),self.transport.getPeer().host))
 
     #Handling of Client Requests , Data 
     def dataReceived(self, rcvdata):
         cmd_count = 0   
         r = fakeredis.FakeStrictRedis()
         cmd_count = cmd_count + 1
-        print "original data:"+str(rcvdata),
+        print("original data:"+str(rcvdata), end=' ')
         #print "Data received:", str(redis_protocol.decode(rcvdata))
         try:
             data=redis_protocol.decode(rcvdata)
             command=" ".join(redis_protocol.decode(rcvdata))
-            print str(command)
+            print(str(command))
         except:
             data=rcvdata
             command=rcvdata
@@ -65,10 +65,10 @@ class RedisServer(Protocol):
                 diff = round(time.time() - time_elapse) % 60
                 self.transport.write(rediscommands.parse_info(diff,self.connectionNb,cmd_count))
             elif command.lower().startswith('keys') and (len(data) == 2 or len(data) == 1):
-                if r.keys() and (data[1] in r.keys() or data[1] == '*') :
-                    keys=r.keys()
+                if list(r.keys()) and (data[1] in list(r.keys()) or data[1] == '*') :
+                    keys=list(r.keys())
                     self.transport.write(rediscommands.encode_keys(keys))
-                elif len(r.keys()) == 0:
+                elif len(list(r.keys())) == 0:
                     self.transport.write("+(empty list or set)\r\n")
                 else:
                     self.transport.write("-ERR wrong number of arguments for 'keys' command\r\n")
@@ -76,7 +76,7 @@ class RedisServer(Protocol):
                 self.transport.write("-ERR unknown command '%s'\r\n"%(data[0]))
     def connectionLost(self, reason):
         self.connectionNb -= 1
-        print "End connection: ", reason.getErrorMessage()
+        print("End connection: ", reason.getErrorMessage())
 
 
 class RedisServerFactory(ServerFactory):
