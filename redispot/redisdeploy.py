@@ -39,8 +39,11 @@ class RedisServer(Protocol):
     #Handling of Client Requests , Data 
     def dataReceived(self, rcvdata):
         cmd_count = 0
-        r = fakeredis.FakeStrictRedis()
         cmd_count = cmd_count + 1
+
+        # instantiate a new fake redis
+        r = fakeredis.FakeStrictRedis()
+
         print("original data:"+str(rcvdata), end=' ')
         #print "Data received:", str(redis_protocol.decode(rcvdata))
         try:
@@ -86,7 +89,7 @@ class RedisServerFactory(ServerFactory):
 
     protocol = RedisServer
 
-def reddeploy(port=6109,method='stdout'):
+def reddeploy(port=6379,method='stdout'):
     if method != 'stdout':
         log.startLogging(open('redis.log', 'a'))
     else:
