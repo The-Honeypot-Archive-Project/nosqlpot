@@ -20,10 +20,10 @@ NoPo is written in Python, and the following packages are required for NoPo to o
 
 ```bash
 # clone the repository
-git clone https://github.com/verovaleros/honeypot_nosqlpot.git
+git clone https://github.com/The-Honeypot-Archive-Project/nosqlpot.git
 
 # go to the honeypot repository
-cd honeypot_nosqlpot/
+cd nosqlpot/
 
 # install the packages needed using pip
 pip install -r requirements.txt
@@ -40,11 +40,11 @@ Get a list of basic options :
 python3 nosqlpot.py -h
 ```
 
-For Linux systems, screen is recommended since NoPo does not run as a daemon and will terminate if a terminal is lost. To deploy NoPo simply issue the command:
+For Linux systems, screen is recommended since NoPo does not run as a daemon and will terminate if a terminal is lost. To deploy NoPo with logging enabled simply issue the command:
 
 ```bash
-screen -d -m -S nopo-redis python3 nosqlpot.py -deploy redis
-screen -d -m -S nopo-couch python3 nosqlpot.py -deploy couch
+screen -d -m -S nopo-redis python3 nosqlpot.py -deploy redis -out nopo-redis.log
+screen -d -m -S nopo-couch python3 nosqlpot.py -deploy couch -out nopo-couch.log
 ```
 
 Deploy an nosql engine with a configuration file:
@@ -52,15 +52,8 @@ Deploy an nosql engine with a configuration file:
 ```bash
 screen -d -m -S nopo-redis python3 nosqlpot.py -deploy redis -config <filename>
 ```
-    
-Log commands session to file :
 
-```bash
-screen -d -m -S nopo-redis python3 nosqlpot.py -deploy redis -out nopo-redis.log
-screen -d -m -S nopo-couch python3 nosqlpot.py -deploy couch -out nopo-couch.log
-```
-
-If installation succeds the server deployed should look like the one shown below:
+If installation succeds the server deployed should look like the one shown below (attach to the screen sessions with `screen -r nopo-redis` or `screen -r nopo-couch`):
 
 ![Screenshot](http://i.imgur.com/4cCX3Me.png)
 
