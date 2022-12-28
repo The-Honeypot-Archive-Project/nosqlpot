@@ -1,8 +1,8 @@
 # NoPo: NoSQL Honeypot Framework
-[![Docker Image CI](https://github.com/verovaleros/honeypot_nosqlpot/actions/workflows/docker-image.yml/badge.svg)](https://github.com/verovaleros/honeypot_nosqlpot/actions/workflows/docker-image.yml)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/verovaleros/honeypot_nosqlpot)
+[![Docker Image CI](https://github.com/The-Honeypot-Archive-Project/nosqlpot/actions/workflows/docker-image.yml/badge.svg)](https://github.com/The-Honeypot-Archive-Project/nosqlpot/actions/workflows/docker-image.yml)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/The-Honeypot-Archive-Project/nosqlpot)
 ![GitHub last commit (branch)](https://img.shields.io/badge/python-3.8.10-brightgreen)
-![Docker Pulls](https://img.shields.io/docker/pulls/verovaleros/nosqlpot?color=green)
+![Docker Pulls](https://img.shields.io/docker/pulls/thehoneypotarchiveproject/nosqlpot?color=green)
 
 NoSQL-Honeypot-Framework (NoPo) is an open source honeypot for nosql databases that automates the process of detecting attackers and logging attack incidents. The simulation engines are deployed using the twisted framework. 
 
@@ -64,10 +64,10 @@ Run NoPo using a Docker image from DockerHub in one command. The current setup a
 
 Deploy a NoPo Redis DB:
 ```bash
-docker container run -d --name nopo-redis -p 6109:6109 verovaleros/nosqlpot:latest python3 nosqlpot.py -deploy redis
+docker container run -d --name nopo-redis -p 6109:6109 thehoneypotarchiveproject/nosqlpot:latest python3 nosqlpot.py -deploy redis
 ```
 
 Deploy a NoPo Couch DB:
 ```bash
-docker container run -d --name nopo-couch -p 8112:8112 verovaleros/nosqlpot:latest python3 nosqlpot.py -deploy couch
+docker container run -d --name nopo-couch -p 8112:8112 thehoneypotarchiveproject/nosqlpot:latest python3 nosqlpot.py -deploy couch
 ```
